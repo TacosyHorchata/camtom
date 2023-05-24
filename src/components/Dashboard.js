@@ -20,17 +20,24 @@ export default function Dashboard() {
       
     <div className='html'>
 
-    <div style={{color:'white', backgroundColor: '#005691', height:'5vh'}}>
+    <div style={{color:'white', backgroundColor: '#005691', height:'7vh'}}>
      <a><p style={{paddingTop:'1.5vh'}}
     className="text-center linkHeader">Regístrate ahora y accede a un descuento del 15% en tu primera operación.</p></a>
     </div>
 
-      <header className="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-4">
-                <a href="A:/Codify/Camtom/index.html" className="col-5 mb-2 text-dark text-decoration-none">
+      <header className="d-flex flex-wrap align-items-center justify-content-md-between py-2 mb-4">
+                <a href="A:/Codify/Camtom/index.html" className="col-4 text-dark text-decoration-none">
                   <img id="img-logo" src={logo} alt="Camtom logo"/>
                 </a>
+
+                <ul class="nav col-2 col-lg-4 justify-content-center navOptions">
+                  <li><a href="#misionEnd" class="nav-link px-2 link-dark">Misión</a></li>
+                  <li><a href="#servicios" class="nav-link px-2 link-dark">Servicios</a></li>
+                  <li><a href="#proceso" class="nav-link px-2 link-dark">Proceso</a></li>
+                  <li><a href="#newsletter" class="nav-link px-2 link-dark">Newsletter</a></li>
+                </ul>
     
-              <a href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'>
+              <a className="col-6 col-lg-4" href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'>
                     <button className="btnHeader btn btn-light position-relative start-50 translate-middle btn-type2"><b>Exporta ahora</b></button>
                     </a>
 
@@ -57,13 +64,12 @@ export default function Dashboard() {
               a expandirse <a style={{color: "#005691" }}>globalmente.</a>
               Descubre el poder de llegar a <a style={{color: "#005691" }}>nuevos</a>mercados y desata
               tu potencial <a style={{color: "#005691" }}>internacional.</a></b></p>
-        <br/>
+        <br id="misionEnd"/>
         <br/>
         <br/>
        </div> 
-        
-       <div className="marquee-wrapper">
-        <h5 className="text-center"><b> <a style={{color: "v" }}>Descubre como podemos <br/>ayudarte</a></b></h5>
+       <div id="servicios" className="marquee-wrapper">
+        <h5 className="text-center"><b> <a style={{color: "#005691" }}>Descubre como podemos <br/>ayudarte</a></b></h5>
         <div className="containerMarquee">
           <div className="marquee-block">
             <div className="marquee-inner to-left">
@@ -96,7 +102,7 @@ export default function Dashboard() {
                     para encontrar los aliados extranjeros más prometedores para tus productos.</p>
                 </div>
                 <div className="marquee-item">
-                  <p><b>Gestión de transporte internacional</b>simplificando la 
+                  <p><b>Gestión de transporte internacional</b> simplificando la 
                     contratación, coordinación y 
                     negociación de tarifas favorables para optimizar tus costos de envío.</p>
                 </div>
@@ -137,9 +143,8 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-        
+      <br id="proceso"/>
         <div className="work_process">
-
         <aside className="work_process_description">
           <h5 className="h-workprocess"><b> <a style={{color: "#005691" }}>Como funciona Camtom</a></b></h5>
           <p>Acompañamos tu éxito desde el <b>primer contenedor.</b><br/>
@@ -158,6 +163,7 @@ export default function Dashboard() {
                 <h5><b>Cuéntanos de ti</b></h5>
               </div>
             </div>
+            
               
               <p>¡Eres único! Nos interesa y queremos brindarte un trato personalizado para ofrecerte la mejor solución.</p>
             </div>
@@ -226,7 +232,7 @@ export default function Dashboard() {
 
         </div>
 
-        <div className="newsletterMobile container" style={{border: "4px solid #005691", margin: "2vh", width: "94vw"}}>
+        <div  id="newsletter" className="newsletterMobile container" style={{border: "4px solid #005691", margin: "2vh", width: "94vw"}}>
 
           <div className="row" style={{padding: "1vh",border: "4px solid #005691"}}>
             <img src={camtomsNews}/>
@@ -302,7 +308,7 @@ export default function Dashboard() {
           <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> <b>Contacto</b></p>
           <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> <a style={{textDecoration:'none', color:'white'}} href="mailto:hello@camtomx.com">hello@camtomx.com</a> | <a style={{textDecoration:'none', color:'white'}} href="tel:+525649975102">+52 (56) 4997 5102</a></p>
           <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> Made with 🤍 in México</p>
-          <br/>
+          <br id='footerEnd'/>
         </div>
     </footer>
     </div>

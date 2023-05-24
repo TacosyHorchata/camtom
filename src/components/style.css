@@ -6,7 +6,7 @@ html{
 }
 
 .linkHeader{
-  font-size: 8px;
+  font-size: 12px;
 }
 
 header{
@@ -16,6 +16,7 @@ header{
     border-bottom: 4px solid rgb(204, 204, 204) !important;
     font-family: "Poppins";
     z-index: 10;
+
 }
 
 
@@ -33,6 +34,12 @@ footer{
   #img-logo{
       width: 10rem;
       margin: 1rem;
+  }
+
+  .navOptions{
+    visibility: hidden;
+    width: 1px !important;
+    height: 1px !important;
   }
 
 
@@ -54,8 +61,7 @@ footer{
 
   .btnHeader{
     margin-left: 15vw;
-    min-width: 100px !important;
-    max-width: 9vh !important;
+    font-size: 12px;
   }
 
   .grid-solutions{
@@ -213,6 +219,7 @@ footer{
 }
 
 .marquee-inner p b{
+  font-weight: 900;
   font-size: 13px;
   line-height: 18.75px;
 }
@@ -305,6 +312,12 @@ footer{
     #img-logo{
       width: 10rem;
       margin: 1rem;
+  }
+
+  .navOptions{
+    visibility: hidden;
+    width: 1px !important;
+    height: 1px !important;
   }
 
   .linkHeader{
@@ -488,6 +501,7 @@ footer{
   }
   
   .marquee-inner p b{
+    font-weight: 900;
     font-size: 26px;
     line-height: 36px;
   }
@@ -771,6 +785,7 @@ footer{
 }
 
 .marquee-inner p b{
+  font-weight: 900;
   font-size: 26px;
   line-height: 36px;
 }
