@@ -147,7 +147,7 @@ export default function Dashboard() {
             <a href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'><button className="btn btn-light btn-type2"><b>Exporta ahora</b></button></a>
         </aside>  
 
-        <div className="work_process_cardsColumn">
+        <div className="work_process_cardsColumn" style={{pointerEvents:'none'}}>
           <div className="work_process_cards">
             <div className="process_card container">
             <div className="row">
