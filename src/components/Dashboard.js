@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useRef, useState} from "react";
 import "./style.css"
 
 import logo from './images/logo.png'
@@ -14,8 +14,31 @@ import icon_facebook from './images/iconos/facebook.svg'
 import icon_linkedin from './images/iconos/linkedin.svg'
 import logo_bn from './images/logo_bn.svg'
 
+import {database} from '../firebase.js'
+import {ref, push} from "firebase/database";
 
 export default function Dashboard() {
+
+const emailNewsletterRef = useRef();
+const [emailNewsletterSend, setEmailNewsletterSend] = useState(false);
+const [emailSendError, setEmailSendError] = useState('');
+
+useEffect(() => {
+},[emailNewsletterSend, emailSendError])
+
+const onSubmit = (e) => {
+  e.preventDefault();
+    //falta agregar que tengan que poner un email valido
+    push(ref(database, 'emails/newsletter/'), emailNewsletterRef.current.value)
+    .then((res) => {
+      setEmailSendError("")
+      setEmailNewsletterSend(true);
+      console.log(emailNewsletterSend);
+    })    
+    .catch((err) => (setEmailSendError(err)))
+}
+
+
   return (
       
     <div className='html'>
@@ -240,15 +263,26 @@ export default function Dashboard() {
           </div>
           <div className="row" style={{padding: "1vh", border: "4px solid #005691"}}><p>Suscríbete a nuestro newsletter 
             para recibir la información más relevante sobre el mundo logístico.</p></div>
-          <div className="row" style={{border: "4px solid #005691"}}>
-            <div className="col-8">
-              <input className="input-newsletter" type="text" placeholder="Deja tu correo aqui"/>
+          <form onSubmit={onSubmit}>
+            <div className="row" style={{border: "4px solid #005691"}}>
+              <div className="col-8">
+                <input className="input-newsletter" type="text" placeholder="Deja tu correo aqui" ref={emailNewsletterRef}/>
+              </div>
+              <div className="col-4" style={{backgroundColor: "#005691"}}>
+                <button type="submit" class="buton_newsletter">Enviar</button>
+              </div>
             </div>
-            <div className="col-4" style={{backgroundColor: "#005691"}}>
-              <p style={{color: "#ffff"}}>Enviar</p>
-            </div>
-          </div>
-  
+          </form>
+          { emailNewsletterSend
+              ? <p>"Email registrado con éxito"</p>
+              :  <></>
+          }
+          
+          { (emailSendError !== "")
+              ? <p>{emailSendError}</p>
+              :  <></>
+          }
+
         </div>
 
 
@@ -266,16 +300,25 @@ export default function Dashboard() {
             </div>
 
           </div>
+          <form onSubmit={onSubmit}>
+            <div className="row" style={{border: "6px solid #005691"}}>
+              <div className="col-7">
+                <input style={{padding: "0.5vh"}} className="input-newsletter" type="text" placeholder="Deja tu correo aquí" ref={emailNewsletterRef}/>
+              </div>
+              <div className="col-5" style={{backgroundColor: "#005691"}}>
+                <button class="buton_newsletter" type="sumbit">Enviar</button>
+              </div>
+            </div>
+          </form>
+          { emailNewsletterSend
+              ? <p>"Email registrado con éxito"</p>
+              :  <></>
+          }
           
-          <div className="row" style={{border: "6px solid #005691"}}>
-            <div className="col-9">
-              <input style={{padding: "0.5vh"}} className="input-newsletter" type="text" placeholder="Deja tu correo aqui"/>
-            </div>
-            <div className="col-3" style={{backgroundColor: "#005691"}}>
-              <p style={{color: "#ffff", paddingTop: "2.5vh", paddingLeft: "6vh"}}>Enviar</p>
-            </div>
-          </div>
-  
+          { (emailSendError !== "")
+              ? <p>{emailSendError}</p>
+              :  <></>
+          }
         </div>
 
           <div>

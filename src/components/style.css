@@ -304,6 +304,18 @@ footer{
   width: 1px;
 }
 
+.buton_newsletter{
+  background-color: #005691;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
 }
 
@@ -576,12 +588,24 @@ footer{
   }
 
   .img_camtomsNews{
-    max-width: 20vh;
+    max-width: 15vh;
   }
 
   .newsletterMobile{
     visibility: hidden;
     height: 100px;
+  }
+
+  .buton_newsletter{
+    background-color: #005691;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
   }
 
 }
@@ -893,6 +917,18 @@ footer{
 .newsletterMobile{
   visibility: hidden;
   height: 100px;
+}
+
+.buton_newsletter{
+    background-color: #005691;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 }
