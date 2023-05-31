@@ -1,0 +1,31 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #E8F1F5;
+    transition: opacity 2s ease;
+    opacity: 0; /* Comienza oculto */
+}
+
+.overlay.visible {
+    opacity: 1; /* Aparece al ser visible */
+}
+
+.overlay.hidden {
+    opacity: 0; /* Desaparece cuando no es visible */
+}
+
+.overlay h2 {
+    color: white;
+}
+
+.overlay button {
+    margin-bottom: 10px;
+}

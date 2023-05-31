@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import "./style.css"
 
 import logo from './images/logo.png'
@@ -16,6 +17,11 @@ import logo_bn from './images/logo_bn.svg'
 
 import {database} from '../firebase.js'
 import {ref, push} from "firebase/database";
+import {logEvent} from "firebase/analytics";
+import {analytics} from '../firebase.js'
+
+
+
 
 export default function Dashboard() {
 
@@ -28,7 +34,7 @@ useEffect(() => {
 
 const onSubmit = (e) => {
   e.preventDefault();
-    //falta agregar que tengan que poner un email valido
+  
     push(ref(database, 'emails/newsletter/'), emailNewsletterRef.current.value)
     .then((res) => {
       setEmailSendError("")
@@ -37,6 +43,14 @@ const onSubmit = (e) => {
     })    
     .catch((err) => (setEmailSendError(err)))
 }
+
+const navigate = useNavigate();
+
+const handleClick = () => {
+  //Registro de eventos
+  logEvent(analytics, 'form_start');
+  navigate("/formsinglepage");
+};
 
 
   return (
@@ -49,7 +63,7 @@ const onSubmit = (e) => {
     </div>
 
       <header className="d-flex flex-wrap align-items-center justify-content-md-between py-2 mb-4">
-                <a href="A:/Codify/Camtom/index.html" className="col-4 text-dark text-decoration-none">
+                <a href="/" className="col-4 text-dark text-decoration-none">
                   <img id="img-logo" src={logo} alt="Camtom logo"/>
                 </a>
 
@@ -59,11 +73,10 @@ const onSubmit = (e) => {
                   <li><a href="#proceso" class="nav-link px-2 link-dark">Proceso</a></li>
                   <li><a href="#newsletter" class="nav-link px-2 link-dark">Newsletter</a></li>
                 </ul>
-    
-              <a className="col-6 col-lg-4" href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'>
-                    <button className="btnHeader btn btn-light position-relative start-50 translate-middle btn-type2"><b>Exporta ahora</b></button>
-                    </a>
-
+              
+              <a href="/login" className="col-6 col-lg-4">
+                    <button className="btnDesktop buttonHeader"><b>Login</b></button>
+              </a>
       </header>
 
     <body>
@@ -73,8 +86,8 @@ const onSubmit = (e) => {
                 <h1 className="text-center"><b>¡Lo hacemos por ti!<br/>Logística fácil para PYMES</b></h1>
                 <p className="text-center">Conectamos tu negocio con oportunidades<br/>globales. Lleva tus 
                   productos al otro lado<br/>del mundo y mete tus sueños en un<br/>contenedor.</p>
-                   <a href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'>
-                    <button className="btn btn-light position-relative start-50 translate-middle btn-type2"><b>Exporta ahora</b></button>
+                   <a>
+                    <button onClick={handleClick} className="btn btn-light position-relative start-50 translate-middle btn-type2"><b>Exporta ahora</b></button>
                     </a>
             </div>
             <div className="banner-image">
@@ -85,7 +98,7 @@ const onSubmit = (e) => {
         <div className="mision">
             <p className="text-center"><b>Nuestra <a style={{color: "#005691"}}>misión</a> es impulsar a las PyMEs
               a expandirse <a style={{color: "#005691" }}>globalmente.</a>
-              Descubre el poder de llegar a <a style={{color: "#005691" }}>nuevos</a>mercados y desata
+              Descubre el poder de llegar a <a style={{color: "#005691" }}>nuevos</a> mercados y desata
               tu potencial <a style={{color: "#005691" }}>internacional.</a></b></p>
         <br id="misionEnd"/>
         <br/>
@@ -172,7 +185,7 @@ const onSubmit = (e) => {
           <h5 className="h-workprocess"><b> <a style={{color: "#005691" }}>Como funciona Camtom</a></b></h5>
           <p>Acompañamos tu éxito desde el <b>primer contenedor.</b><br/>
             <br/>Sabemos que dar el primer paso puede ser intimidante, pero estamos aquí para guiarte en <b>cada etapa</b> del camino.</p>
-            <a href='https://x93llibq6n1.typeform.com/to/AXd7xOwc'><button className="btn btn-light btn-type2"><b>Exporta ahora</b></button></a>
+            <a><button onClick={handleClick} className="btn btn-light btn-type2"><b>Exporta ahora</b></button></a>
         </aside>  
 
         <div className="work_process_cardsColumn" style={{pointerEvents:'none'}}>
@@ -349,7 +362,7 @@ const onSubmit = (e) => {
           <br/>
           <br/>
           <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> <b>Contacto</b></p>
-          <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> <a style={{textDecoration:'none', color:'white'}} href="mailto:hello@camtomx.com">hello@camtomx.com</a> | <a style={{textDecoration:'none', color:'white'}} href="tel:+525649975102">+52 (56) 4997 5102</a></p>
+          <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> <a style={{textDecoration:'none', color:'white'}} href="mailto:hello@camtomx.com">hello@camtomx.com</a> | <a style={{textDecoration:'none', color:'white'}} href="https://wa.me/message/L2YW43FBWE2TM1">+52 (56) 4997 5102</a></p>
           <p style={{color: "rgb(201, 201, 201)", textAlign: "center"}}> Made with 🤍 in México</p>
           <br id='footerEnd'/>
         </div>

@@ -1,0 +1,83 @@
+
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80vh;
+}
+
+.login-wrapper a {
+    text-align: center;
+    color: #004A7C;
+}
+
+.login-wrapper img {
+    width: 30vw;
+    max-width: 200px;
+    position: absolute;
+    top: 2vh; /* Puedes ajustar estos valores */
+    left: 2vw;
+}
+
+.login-wrapper form {
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.login-wrapper form p {
+    margin-bottom: 5px;
+}
+
+.login-wrapper form label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-wrapper form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-wrapper form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #004A7C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-wrapper form button:hover {
+    background-color: #015a96;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+
+.signup-wrapper p {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-type2{
+    min-width: 150px;
+    margin-top: 5vh;
+    width: 10vw;
+    border-radius: 0px;
+    box-shadow: 0.5em 0.5em black, 0 0 0 0.05em black;
+    z-index: 0;
+}
