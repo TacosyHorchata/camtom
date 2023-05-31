@@ -16,9 +16,7 @@ header{
     border-bottom: 4px solid rgb(204, 204, 204) !important;
     font-family: "Poppins";
     z-index: 10;
-
 }
-
 
 body{
     background-color:#E8F1F5;
@@ -45,6 +43,8 @@ footer{
   font-size: 1em; /* use em for better responsiveness */
   cursor: pointer;
 }
+
+
 
 @media (max-width: 641px) { 
   
@@ -128,21 +128,6 @@ footer{
   .input-contactform::placeholder {
       color: #AAAAAA;
       font-size: 22px;
-  }
-
-  .input-newsletter {
-    background: transparent;
-    width: 100%;
-    border: none;
-    outline: none;
-    margin-top: 1rem;
-    font-family:'Poppins'; 
-    color: #004A7C;  
-  }
-
-  .input-newsletter::placeholder {
-    color: #AAAAAA;
-
   }
 
   .input-block{
@@ -303,29 +288,6 @@ footer{
   margin-right:4vw;
 }
 
-.newsletterTD{
-  visibility: hidden;
-  height: 1px;
-  width: 1px;
-}
-
-.img_camtomsNews{
-  width: 1px;
-}
-
-.buton_newsletter{
-  background-color: #005691;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-
 }
 
 @media (min-width: 641px) and (max-width: 1025px) {
@@ -425,21 +387,6 @@ footer{
   .input-contactform::placeholder {
       color: #AAAAAA;
       font-size: 22px;
-  }
-
-  .input-newsletter {
-    background: transparent;
-    width: 100%;
-    border: none;
-    outline: none;
-    margin-top: 1rem;
-    font-family:'Poppins'; 
-    color: #004A7C;  
-  }
-
-  .input-newsletter::placeholder {
-    color: #AAAAAA;
-
   }
 
   .input-block{
@@ -601,27 +548,6 @@ footer{
     margin-right:4vw;
   }
 
-  .img_camtomsNews{
-    max-width: 15vh;
-  }
-
-  .newsletterMobile{
-    visibility: hidden;
-    height: 100px;
-  }
-
-  .buton_newsletter{
-    background-color: #005691;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
 }
 
 @media (min-width:1025px) { 
@@ -719,21 +645,6 @@ footer{
 .input-contactform::placeholder {
     color: #AAAAAA;
     font-size: 22px;
-}
-
-.input-newsletter {
-  background: transparent;
-  width: 100%;
-  border: none;
-  outline: none;
-  margin-top: 1rem;
-  font-family:'Poppins'; 
-  color: #004A7C;  
-}
-
-.input-newsletter::placeholder {
-  color: #AAAAAA;
-
 }
 
 .input-block{
@@ -924,33 +835,7 @@ footer{
   text-align: left;
 }
 
-.img_camtomsNews{
-  max-width: 20vh;
 }
-
-.newsletterMobile{
-  visibility: hidden;
-  height: 100px;
-}
-
-.buton_newsletter{
-    background-color: #005691;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-}
-
-
-
-
-
 
 
 /*

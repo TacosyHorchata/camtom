@@ -15,6 +15,8 @@ function MVP() {
             <div>Balance</div>
             <div class="full-width full-height">Calendario</div> 
         </div>
+
+        
     </div>
   );
 }

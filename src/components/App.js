@@ -20,6 +20,10 @@ function App() {
                     <Route path="/formsinglepage" element={<FormSinglePage/>}/>
                     <Route path="/success/:messageType" element={<Success/>} />
                     <Route path="/login" element={<Login/>} />
+
+
+                    <Route path="/mvp" element={<MVP/>}/>
+                    <Route path="/quote" element={<Quote/>}/>
                   </Routes>
                 </div> 
             </Router>    

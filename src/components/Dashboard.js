@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import "./style.css"
+import "./style/Newsletter.css"
 
 import logo from './images/logo.png'
 import camtomsNews from './images/camtoms_news.png'
@@ -34,6 +35,16 @@ useEffect(() => {
 
 const onSubmit = (e) => {
   e.preventDefault();
+
+  e.preventDefault();
+    const email = emailNewsletterRef.current.value;
+
+    // Validación del email
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!regex.test(email)) {
+      setEmailSendError("Por favor, introduce un correo electrónico válido.");
+      return;
+    }
   
     push(ref(database, 'emails/newsletter/'), emailNewsletterRef.current.value)
     .then((res) => {
@@ -267,80 +278,46 @@ const handleClick = () => {
           </div>  
 
         </div>
+    
+      
+      <div id="newsletter" className="newsletterContainer" style={{margin: "2vh", width: "94vw"}}>
 
-        <div  id="newsletter" className="newsletterMobile container" style={{border: "4px solid #005691", margin: "2vh", width: "94vw"}}>
-
-          <div className="row" style={{padding: "1vh",border: "4px solid #005691"}}>
-            <img src={camtomsNews}/>
-            <h2 style={{color: "#005691"}}>Newsletter de logística</h2>
-          </div>
-          <div className="row" style={{padding: "1vh", border: "4px solid #005691"}}><p>Suscríbete a nuestro newsletter 
-            para recibir la información más relevante sobre el mundo logístico.</p></div>
-          <form onSubmit={onSubmit}>
-            <div className="row" style={{border: "4px solid #005691"}}>
-              <div className="col-8">
-                <input className="input-newsletter" type="text" placeholder="Deja tu correo aqui" ref={emailNewsletterRef}/>
-              </div>
-              <div className="col-4" style={{backgroundColor: "#005691"}}>
-                <button type="submit" class="buton_newsletter">Enviar</button>
-              </div>
-            </div>
-          </form>
-          { emailNewsletterSend
-              ? <p>"Email registrado con éxito"</p>
-              :  <></>
-          }
+        <div className="newsletterRow" style={{padding: "1vh",border: "10px solid #005691"}}>
           
-          { (emailSendError !== "")
-              ? <p>{emailSendError}</p>
-              :  <></>
-          }
+          <div className="newsletterColumn-4" style={{borderRight: "6px solid #005691"}}>
+            <img src={camtomsNews} className="imgNewsletter"/>
+            <h5 style={{color: "#005691"}} className="titleNewsletter">Newsletter de logística</h5>
+          </div>
+
+          <div className="newsletterColumn-8" style={{padding: "1vh"}}>
+            <p>Suscríbete a nuestro newsletter para recibir la información más relevante sobre el mundo logístico.</p>
+          </div>
 
         </div>
 
-
-        <div className="newsletterTD container position-relative start-50 translate-middle" style={{border: "4px solid #005691", margin: "2vh", width: "94vw"}}>
-
-          <div className="row" style={{padding: "1vh",border: "6px solid #005691"}}>
+        <form onSubmit={onSubmit}>
+          <div className="newsletterRowForm" style={{border: "10px solid #005691"}}>
             
-            <div className="col-4" style={{borderRight: "4px solid #005691"}}>
-              <img src={camtomsNews} className="img_camtomsNews"/>
-              <h5 style={{color: "#005691"}}>Newsletter de logística</h5>
+            <div className="newsletterColumn-7">
+              <input style={{padding: "0.5vh"}} className="inputNewsletter" type="text" placeholder="Deja tu correo aquí" ref={emailNewsletterRef}/>
             </div>
-
-            <div className="col-8" style={{padding: "1vh"}}><p>Suscríbete a nuestro newsletter 
-            para recibir la información más relevante sobre el mundo logístico.</p>
+            
+            <div className="newsletterColumn-5" style={{backgroundColor: "#005691"}}>
+              <button className="buttonNewsletter" type="submit">Enviar</button>
             </div>
-
+            
           </div>
-          <form onSubmit={onSubmit}>
-            <div className="row" style={{border: "6px solid #005691"}}>
-              <div className="col-7">
-                <input style={{padding: "0.5vh"}} className="input-newsletter" type="text" placeholder="Deja tu correo aquí" ref={emailNewsletterRef}/>
-              </div>
-              <div className="col-5" style={{backgroundColor: "#005691"}}>
-                <button class="buton_newsletter" type="sumbit">Enviar</button>
-              </div>
-            </div>
-          </form>
-          { emailNewsletterSend
-              ? <p>"Email registrado con éxito"</p>
-              :  <></>
-          }
-          
-          { (emailSendError !== "")
-              ? <p>{emailSendError}</p>
-              :  <></>
-          }
+        </form>
+
+        { emailNewsletterSend ? <p>"Email registrado con éxito"</p> :  <></> }
+
+        { (emailSendError !== "") ? <p style={{color:"red"}}>{emailSendError}</p> :  <></> }
+
         </div>
 
-          <div>
-           
-              <br/>
-              <br/>
-              
-        </div>
-      </div>        
+    </div>
+      
+  
 
     </body>
 

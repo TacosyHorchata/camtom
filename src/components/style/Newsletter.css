@@ -1,0 +1,121 @@
+/*newsletter form style*/
+
+.newsletterContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+  }
+  
+  .newsletterRow {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .newsletterRowForm {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .newsletterColumn-4 {
+    flex: 1;
+    max-width: 33%;
+    padding: 1vw;
+    border-right: 4px solid #005691;
+  }
+  
+  .newsletterColumn-8 {
+    flex: 3;
+    max-width: 66%;
+    padding: 1vh;
+  }
+  
+  .newsletterColumn-7 {
+    flex: 4;
+    padding: 0.5vh;
+  }
+  
+  .newsletterColumn-5 {
+    flex: 1;
+    text-align: center;
+    background-color: #005691;
+  }
+  
+  .imgNewsletter {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .titleNewsletter {
+    color: #005691;
+  }
+  
+  .buttonNewsletter {
+    background-color: #005691;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .inputNewsletter {
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-top: 1rem;
+    font-family:'Poppins'; 
+    color: #004A7C;  
+  }
+  
+  .inputNewsletter::placeholder {
+    color: #AAAAAA;
+  }
+  
+  @media screen and (max-width: 641px) { /* Ajusta este valor de acuerdo a tus necesidades */
+    .newsletterColumn-4, .newsletterColumn-8{
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+    .newsletterColumn-7 {
+      flex: 3;
+      padding: 0.5vh;
+    }
+    .newsletterColumn-5 {
+      flex: 1;
+      text-align: center;
+      background-color: #005691;
+    }
+    .newsletterColumn-4 {
+      border-bottom: 8px solid #005691;
+      border-right: none!important;
+    }
+    .img_camtomsNews{
+        width: 15vh;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1025px) {
+  
+  .img_camtomsNews{
+    max-width: 15vh;
+  }
+}
+
+  @media (min-width:1025px) { 
+
+  .img_camtomsNews{
+    max-width: 20vh;
+  }
+}
+  
+  
+  /*END newsletter form style*/
+  
