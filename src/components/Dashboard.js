@@ -193,7 +193,7 @@ const handleClick = () => {
       <br id="proceso"/>
         <div className="work_process">
         <aside className="work_process_description">
-          <h5 className="h-workprocess"><b> <a style={{color: "#005691" }}>Como funciona Camtom</a></b></h5>
+          <h5 className="h-workprocess"><b> <a style={{color: "#005691" }}>Cómo funciona Camtom</a></b></h5>
           <p>Acompañamos tu éxito desde el <b>primer contenedor.</b><br/>
             <br/>Sabemos que dar el primer paso puede ser intimidante, pero estamos aquí para guiarte en <b>cada etapa</b> del camino.</p>
             <a><button onClick={handleClick} className="btn btn-light btn-type2"><b>Exporta ahora</b></button></a>
