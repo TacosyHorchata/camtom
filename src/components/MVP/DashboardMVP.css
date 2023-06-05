@@ -180,4 +180,7 @@
     /* resto de tus estilos... */
   }
   
+  .mapboxgl-ctrl-bottom-right {
+    visibility: hidden;
+  }
    
