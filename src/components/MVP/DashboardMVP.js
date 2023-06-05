@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect } from 'react';
 //dependencias mapa
-import mapboxgl from 'mapbox-gl';
-
+import Map, { GeolocateControl } from "react-map-gl";
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 //dependencias calendario
 import Calendar from 'react-calendar';
@@ -21,8 +21,6 @@ import axios from 'axios';
 import "./DashboardMVP.css"
 
 const serverURL = process.env.REACT_APP_serverURL;
-
-mapboxgl.accessToken = 'pk.eyJ1IjoicGVkcm9yaW9zYSIsImEiOiJjbGlpazExZzMwenVmM3JtcTJ3dnVkN3ZkIn0.NKskgaHf3bjA6OIVQt_jrg';
 
 function Dashboard() {
   return (
@@ -47,8 +45,6 @@ function DashboardHome() {
   const [reports, setReports] = useState([]);
   const [errors, setErrors] = useState({});
   const [value, onChange] = useState(new Date());
-  const mapContainerRef = useRef(null);
-
 
     const getReportFolios = async () => {
 
@@ -72,15 +68,6 @@ function DashboardHome() {
 
     useEffect(() => {
         getReportFolios();
-        const map = new mapboxgl.Map({
-          container: mapContainerRef.current,
-          style: 'mapbox://styles/mapbox/streets-v11', // Style URL
-          center: [-95.9876, 22.7405], // Starting position [lng, lat]
-          zoom: 3.5, // Starting zoom
-        });
-    
-        // Cleanup on unmount
-        return () => map.remove();
       }, []);
 
     return (
@@ -104,8 +91,16 @@ function DashboardHome() {
                     }
                   </span>
                 </div>
-                <div className="map-container dashboardMap double-width" ref={mapContainerRef}>
-                </div>
+                <div className="dashboardMap double-width">
+                  <Map
+                    mapboxAccessToken="pk.eyJ1IjoicGVkcm9yaW9zYSIsImEiOiJjbGlpazExZzMwenVmM3JtcTJ3dnVkN3ZkIn0.NKskgaHf3bjA6OIVQt_jrg"
+                    initialViewState={{
+                      longitude: -100.1332,
+                      latitude: 23.4326,
+                      zoom: 3.5,
+                    }}
+                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                  /></div>
                 <div className="dashboardBalance">Balance <span>No hay información disponible</span></div>
                 <div className="dashboardCalendar full-width">Calendario 
                   <Calendar onChange={onChange} value={value} />
