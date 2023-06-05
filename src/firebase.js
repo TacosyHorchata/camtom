@@ -2,23 +2,25 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAXtka8d0OWiEF1m-V9rgYxZ941wpRtBV8",
-  authDomain: "camtom-b6444.firebaseapp.com",
-  databaseURL: "https://camtom-b6444-default-rtdb.firebaseio.com",
-  projectId: "camtom-b6444",
-  storageBucket: "camtom-b6444.appspot.com",
-  messagingSenderId: "457055614874",
-  appId: "1:457055614874:web:52b5e6b7b6a52cdef7ac23",
-  measurementId: "G-MECF6GYS0M"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  databseUrl: process.env.REACT_APP_databaseURL,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
+export const auth = getAuth(app);
 export const analytics = getAnalytics(app);

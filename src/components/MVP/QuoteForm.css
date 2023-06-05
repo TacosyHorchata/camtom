@@ -1,0 +1,95 @@
+.quote-form-container {
+  margin-right: 10vw;
+  margin-left: 10vw;
+}
+
+.form-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #0056b3;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.toggle-button {
+  width: 220px; /* Ancho del botón ajustable */
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 20px;
+  border: 1px solid black;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-indicator {
+  width: 50%;
+  height: 95%;
+  background-color: #0056b3;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5%;
+  transition: transform 0.3s ease;
+  z-index: 10;
+  color: white;
+  border: 1px solid black;
+}
+
+.toggle-label {
+  width: 100%;
+  height: 100%;
+  color: #6D6D6D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  transition: transform 0.3s ease;
+  white-space: pre;
+}
+
+.toggle-text {
+  font-weight: bold;
+}
+
+.toggle-button.on .toggle-indicator {
+  transform: translateX(98%);
+}

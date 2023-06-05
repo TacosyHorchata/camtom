@@ -104,12 +104,19 @@
 
   @media (min-width: 641px) and (max-width: 1025px) {
   
+    #newsletter p{
+        font-size: 18px;
+    }
+
   .img_camtomsNews{
     max-width: 15vh;
   }
 }
 
-  @media (min-width:1025px) { 
+  @media (min-width:1025px) {
+    #newsletter p{
+        font-size: 22px;
+    } 
 
   .img_camtomsNews{
     max-width: 20vh;

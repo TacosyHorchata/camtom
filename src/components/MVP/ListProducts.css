@@ -1,0 +1,27 @@
+.productCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 2vh;
+    padding: 10px;
+  }
+  
+  .detailsButton {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .detailsButton a {
+    color: white;
+    text-decoration: none;
+  }

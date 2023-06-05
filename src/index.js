@@ -7,9 +7,13 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import App from "./components/App"
 
+import { store } from './redux/store.js'
+import { Provider } from 'react-redux'
+
 ReactDOM.render(
-  <React.StrictMode>
-        <App/>
-  </React.StrictMode>,
-  document.getElementById("root")
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 )
+
