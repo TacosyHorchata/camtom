@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 //dependencias mapa
 import 'react-calendar/dist/Calendar.css';
-import { Mapbox } from 'react-map-gl';
+import Mapbox from 'react-map-gl';
 
 //dependencias calendario
 import Calendar from 'react-calendar';
