@@ -26,10 +26,10 @@ function Login() {
       
         try {
           const userCredential = await signInWithEmailAndPassword(auth, username, password);
-          console.log(`${serverURL}/api/login/${userCredential.user.uid}`)
+         
           const userIdResponse = await axios.get(`${serverURL}/api/login/${userCredential.user.uid}`);
           const userId = userIdResponse.data._id;
-            console.log(userIdResponse)
+
           const user = {
             userId: userId,
             email: userCredential.user.email,

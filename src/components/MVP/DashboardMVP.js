@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 //dependencias mapa
-import Map, { GeolocateControl } from "react-map-gl";
-import 'mapbox-gl/dist/mapbox-gl.css'
+import 'react-calendar/dist/Calendar.css';
+import { Mapbox } from 'react-map-gl';
 
 //dependencias calendario
 import Calendar from 'react-calendar';
@@ -46,16 +46,22 @@ function DashboardHome() {
   const [errors, setErrors] = useState({});
   const [value, onChange] = useState(new Date());
 
+  const [viewport, setViewport] = useState({
+    latitude: 23.4326,
+    longitude: -100.1332,
+    zoom: 3.5,
+  });
+
     const getReportFolios = async () => {
 
         try {
           // Obtiene los folios de los reportes del usuario
           const responseFolios = await axios.get(`${serverURL}/api/reportfolios/${userId}`);
           const arrayfolios = responseFolios.data;
-          console.log(arrayfolios);
+  
           // Para cada folio, obtener el reporte completo
           const responseReports = await axios.post(`${serverURL}/api/reportfolios/`, {arrayfolios:arrayfolios});
-          console.log(responseReports);
+ 
           // Guardar los reportes en el estado del componente
           setReports(responseReports.data);
           setErrors({...errors, loading:null})
@@ -92,15 +98,14 @@ function DashboardHome() {
                   </span>
                 </div>
                 <div className="dashboardMap double-width">
-                  <Map
-                    mapboxAccessToken="pk.eyJ1IjoicGVkcm9yaW9zYSIsImEiOiJjbGlpazExZzMwenVmM3JtcTJ3dnVkN3ZkIn0.NKskgaHf3bjA6OIVQt_jrg"
-                    initialViewState={{
-                      longitude: -100.1332,
-                      latitude: 23.4326,
-                      zoom: 3.5,
-                    }}
-                    mapStyle="mapbox://styles/mapbox/streets-v11"
-                  /></div>
+                <Mapbox
+                  {...viewport}
+                  width="100%"
+                  height="100%"
+                  onViewportChange={(nextViewport) => setViewport(nextViewport)}
+                  mapboxApiAccessToken="pk.eyJ1IjoicGVkcm9yaW9zYSIsImEiOiJjbGlpazExZzMwenVmM3JtcTJ3dnVkN3ZkIn0.NKskgaHf3bjA6OIVQt_jrg"
+                  mapStyle="mapbox://styles/mapbox/streets-v11"
+                /></div>
                 <div className="dashboardBalance">Balance <span>No hay información disponible</span></div>
                 <div className="dashboardCalendar full-width">Calendario 
                   <Calendar onChange={onChange} value={value} />
