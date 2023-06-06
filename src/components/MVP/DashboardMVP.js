@@ -86,7 +86,7 @@ function DashboardHome() {
                 <div className="dashboardSection">Proximos <span>No hay información disponible</span></div>
                 <div className="dashboardSection">
                   Productos 
-                  <span>
+                  <span className="scrollable-container">
                     {reports.length > 0 
                     ? reports.map((report, index) => (
                       <div key={index}>

@@ -57,6 +57,15 @@ const Report = () => {
     const userId = useSelector(state => state.user.user.userId);
     const reportId = params.reportId; //params.reportId
 
+    const checkAndSetValues = (reportData) => {
+      Object.keys(reportData).forEach(key => {
+          if(reportData[key] === '' || reportData[key] === 0){
+              reportData[key] = 'Por definir';
+          }
+      });
+      return reportData;
+    }
+
     const getReport = async () => {
 
         if(userId !== params.userId){
@@ -69,6 +78,10 @@ const Report = () => {
           const responseReport = await axios.get(`${serverURL}/api/report/${reportId}`); //agregar autenticacion de usuario
           // Guardar los reportes en el estado del componente
           setReport(responseReport.data);
+
+          const updatedData = checkAndSetValues(responseReport.data);
+          setReport(updatedData);
+
           setErrors({...errors, loading:null})
           
         } catch (error) {
@@ -83,84 +96,84 @@ const Report = () => {
 
     return (
         <div className="main report-container">
-          {errors.loading ? (
-            <p style={{ color: 'red', margin: '2vh' }}>{errors.loading}</p>
-          ) : null}
-          <h1>Reporte de cotización {report.folio}</h1>
-          <p>Fecha: {report.fechaCreacion}</p>
-          <p>
-            Exportación de {report.producto} -{' '}
-            {report.fraccionArancelaria}
-          </p>
-          <p>
-            Desde {report.origenSecundario} a {report.destinoSecundario}
-          </p>
-          <p>{report.incoterm}</p>
-      
-          <h3>Costos de transporte</h3>
-          <h5>Total: ${report.costoTransporte}</h5>
-          <p>
-            Flete secundario <span className="right-align">${report.costoFleteSecundario}</span>
-          </p>
-          <p>
-            {report.origenPrincipal} a {report.origenSecundario}
-          </p>
-          <p>AD de Exportación <span className="right-align">${report.costoADExportacion}</span></p>
-          <p>Arancel de Exportacion <span className="right-align">${report.arancelExportacion}</span></p>
-          <p>Montacargas <span className="right-align">${report.costoMontacargas}</span></p>
-          <p>Carga <span className="right-align">${report.costoCarga1}</span></p>
-          <p>Descarga <span className="right-align">${report.costoDescarga}</span></p>
-          <p>Carga <span className="right-align">${report.costoCarga2}</span></p>
-          <p>Flete primario <span className="right-align">${report.costoFletePrimario}</span></p>
-          <p>
-            {report.origenSecundario} a {report.destinoSecundario}
-          </p>
-          <p>Seguro <span className="right-align">${report.costoSeguro}</span></p>
-          <p>Descarga Importación <span className="right-align">${report.costoDescargaImportacion}</span></p>
-          <p>
-            Flete secundario de Importación{' '}
-            <span className="right-align">${report.costoFleteSecundarioImportacion}</span>
-          </p>
-          <p>
-            {report.destinoSecundario} a {report.destinoPrimario}
-          </p>
-          <p>Nomina de descarga <span className="right-align">${report.costoNominaDescarga}</span></p>
-          <p>Arancel Importación <span className="right-align">${report.arancelImportacion}</span></p>
-          <p>AD de Importación <span className="right-align">${report.costoADImportacion}</span></p>
-          <p>DC de Importación <span className="right-align">${report.costoDCImportacion}</span></p>
-      
-          <h3>Costos de impuestos</h3>
-          <p>
-            IGI o IGE <span className="percentage">{report.porcentajeIgiIge}%</span>{' '}
-            <span className="right-align">${report.costoIGIIGE}</span>
-          </p>
-          <p>
-            DTA <span className="percentage">{report.porcentajeDTA}%</span>{' '}
-            <span className="right-align">${report.costoDTA}</span>
-          </p>
-          <p>Cuota Compensatoria <span className="right-align">${report.cuotaCompensatoria}</span></p>
-          <p>
-            IEPS <span className="percentage">{report.porcentajeIEPS}%</span>{' '}
-            <span className="right-align">${report.costoIEPS}</span>
-          </p>
-          <p>
-            ISAN <span className="percentage">{report.porcentajeISAN}%</span>{' '}
-            <span className="right-align">${report.costoISAN}</span>
-          </p>
-          <p>
-            IVA <span className="percentage">{report.porcentajeIVA}%</span>{' '}
-            <span className="right-align">${report.costoIVA}</span>
-          </p>
-          <p>PREV <span className="right-align">${report.costoPREV}</span></p>
-          <h5>Total de costos <span className="right-align">${report.totalCostos}</span></h5>
-      
-          <p>
-            Precios expresados en dólares al tipo de cambio americano $
-            {report.cambioDolar} por dólar.
-          </p>
-      
-          <button onClick={() => {/* código para descargar reporte */}}>Descargar reporte</button>
-        </div>
+    {errors.loading ? (
+        <p style={{ color: 'red', margin: '2vh' }}>{errors.loading}</p>
+    ) : null}
+    <h1>Reporte de cotización {report.folio}</h1>
+    <p>Fecha: <i><u>{report.fechaCreacion}</u></i></p>
+    <p>
+        Exportación de <i><u>{report.producto}</u></i> -{' '}
+        <i><u>{report.fraccionArancelaria}</u></i>
+    </p>
+    <p>
+        Desde <i><u>{report.origenSecundario}</u></i> a <i><u>{report.destinoSecundario}</u></i>
+    </p>
+    <p><i><u>{report.incoterm}</u></i></p>
+
+    <h3>Costos de transporte</h3>
+    <h5>Total: $<i><u>{report.costoTransporte}</u></i></h5>
+    <p>
+        Flete secundario <span className="right-align">$<i><u>{report.costoFleteSecundario}</u></i></span>
+    </p>
+    <p>
+        <i><u>{report.origenPrincipal}</u></i> a <i><u>{report.origenSecundario}</u></i>
+    </p>
+    <p>AD de Exportación <span className="right-align">$<i><u>{report.costoADExportacion}</u></i></span></p>
+    <p>Arancel de Exportacion <span className="right-align">$<i><u>{report.arancelExportacion}</u></i></span></p>
+    <p>Montacargas <span className="right-align">$<i><u>{report.costoMontacargas}</u></i></span></p>
+    <p>Carga <span className="right-align">$<i><u>{report.costoCarga1}</u></i></span></p>
+    <p>Descarga <span className="right-align">$<i><u>{report.costoDescarga}</u></i></span></p>
+    <p>Carga <span className="right-align">$<i><u>{report.costoCarga2}</u></i></span></p>
+    <p>Flete primario <span className="right-align">$<i><u>{report.costoFletePrimario}</u></i></span></p>
+    <p>
+        <i><u>{report.origenSecundario}</u></i> a <i><u>{report.destinoSecundario}</u></i>
+    </p>
+    <p>Seguro <span className="right-align">$<i><u>{report.costoSeguro}</u></i></span></p>
+    <p>Descarga Importación <span className="right-align">$<i><u>{report.costoDescargaImportacion}</u></i></span></p>
+    <p>
+        Flete secundario de Importación{' '}
+        <span className="right-align">$<i><u>{report.costoFleteSecundarioImportacion}</u></i></span>
+    </p>
+    <p>
+        <i><u>{report.destinoSecundario}</u></i> a <i><u>{report.destinoPrimario}</u></i>
+    </p>
+    <p>Nomina de descarga <span className="right-align">$<i><u>{report.costoNominaDescarga}</u></i></span></p>
+    <p>Arancel Importación <span className="right-align">$<i><u>{report.arancelImportacion}</u></i></span></p>
+    <p>AD de Importación <span className="right-align">$<i><u>{report.costoADImportacion}</u></i></span></p>
+    <p>DC de Importación <span className="right-align">$<i><u>{report.costoDCImportacion}</u></i></span></p>
+
+    <h3>Costos de impuestos</h3>
+    <p>
+        IGI o IGE <span className="percentage"><i><u>{report.porcentajeIgiIge}</u></i>%</span>{' '}
+        <span className="right-align">$<i><u>{report.costoIGIIGE}</u></i></span>
+    </p>
+    <p>
+        DTA <span className="percentage"><i><u>{report.porcentajeDTA}</u></i>%</span>{' '}
+        <span className="right-align">$<i><u>{report.costoDTA}</u></i></span>
+    </p>
+    <p>Cuota Compensatoria <span className="right-align">$<i><u>{report.cuotaCompensatoria}</u></i></span></p>
+    <p>
+        IEPS <span className="percentage"><i><u>{report.porcentajeIEPS}</u></i>%</span>{' '}
+        <span className="right-align">$<i><u>{report.costoIEPS}</u></i></span>
+    </p>
+    <p>
+        ISAN <span className="percentage"><i><u>{report.porcentajeISAN}</u></i>%</span>{' '}
+        <span className="right-align">$<i><u>{report.costoISAN}</u></i></span>
+    </p>
+    <p>
+        IVA <span className="percentage"><i><u>{report.porcentajeIVA}</u></i>%</span>{' '}
+        <span className="right-align">$<i><u>{report.costoIVA}</u></i></span>
+    </p>
+    <p>PREV <span className="right-align">$<i><u>{report.costoPREV}</u></i></span></p>
+    <h5>Total de costos <span className="right-align">$<i><u>{report.totalCostos}</u></i></span></h5>
+
+    <p>
+        Precios expresados en dólares al tipo de cambio americano $
+        <i><u>{report.cambioDolar}</u></i> por dólar.
+    </p>
+
+</div>
+
     );
       
 }
