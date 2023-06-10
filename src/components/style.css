@@ -53,6 +53,10 @@ footer{
       margin: 1rem;
   }
 
+  .loginButton {
+    visibility: hidden;
+  }
+
   .navOptions{
     visibility: hidden;
     width: 1px !important;
@@ -295,6 +299,10 @@ footer{
     #img-logo{
       width: 10rem;
       margin: 1rem;
+  }
+
+  .loginButton {
+    visibility: hidden;
   }
 
   .navOptions{
