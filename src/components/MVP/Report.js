@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import './Report.css'
@@ -48,11 +48,14 @@ const Report = () => {
         costoIVA: '',
         costoPREV: '',
         totalCostos: '',
-        cambioDolar: ''
+        cambioDolar: '',
+        accepted: false,
     });
     const [errors, setErrors] = useState({});
+    const [termsAccepted, setTermsAccepted] = useState(false); 
 
     const params = useParams();
+    const navigate = useNavigate();
 
     const userId = useSelector(state => state.user.user.userId);
     const reportId = params.reportId; //params.reportId
@@ -78,15 +81,35 @@ const Report = () => {
           const responseReport = await axios.get(`${serverURL}/api/report/${reportId}`); //agregar autenticacion de usuario
           // Guardar los reportes en el estado del componente
           setReport(responseReport.data);
-
+          console.log(responseReport.data)
           const updatedData = checkAndSetValues(responseReport.data);
           setReport(updatedData);
+          console.log(updatedData);
+          console.log(report);
 
           setErrors({...errors, loading:null})
-          
         } catch (error) {
           console.error("Error obteniendo el reporte:", error);
           setErrors({...errors, loading: "Error obteniendo el reporte, intente más tarde"});
+        }
+    };
+
+    const acceptQuote = async () => {
+        if(userId !== params.userId){
+            return;
+        }
+
+        if(termsAccepted) {
+            try {
+                await axios.put(`${serverURL}/api/report/${reportId}/accepted`, { accepted: true });
+                setReport({...report, accepted:true});
+                navigate('/dashboard/success-quote');
+            } catch (error) {
+                console.error("Error al aceptar la cotización:", error);
+                setErrors({...errors, acceptQuote: "Error al aceptar la cotización, intente más tarde."});
+            }
+        } else {
+            setErrors({...errors, acceptQuote: "Debe aceptar los términos y condiciones antes de aceptar la cotización"});
         }
     };
 
@@ -171,6 +194,38 @@ const Report = () => {
         Precios expresados en dólares al tipo de cambio americano $
         <i><u>{report.cambioDolar}</u></i> por dólar.
     </p>
+
+    <div>
+            
+            {!report.accepted ? (
+                
+                <>
+                    <p>
+                        <input
+                            type="checkbox"
+                            checked={termsAccepted}
+                            onChange={(e) => setTermsAccepted(e.target.checked)}
+                        />
+                        Acepto los <a href='/dashboard/terms-conditions'>términos y condiciones</a>
+                    </p>
+                    <button className="acceptButton" onClick={acceptQuote}>
+                        Aceptar cotización
+                    </button>
+                </>
+            ) : (
+                <>
+                    <button className="disabledButton" disabled>
+                        Cotización Aceptada
+                    </button>
+                </>
+            )
+
+            }
+            
+            {errors.acceptQuote ? (
+                <p style={{ color: 'red', margin: '2vh' }}>{errors.acceptQuote}</p>
+            ) : null}
+    </div>
 
 </div>
 

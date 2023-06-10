@@ -10,6 +10,7 @@ import calendar_icon from '../images/icons-mvp/calendar.svg';
 import moneytransfer_icon from '../images/icons-mvp/moneytransfer.svg';
 import paidbill_icon from '../images/icons-mvp/paidbill.svg';
 import truck_icon from '../images/icons-mvp/truck.svg';
+import logout from '../images/icons-mvp/logout.svg';
 
 import './Sidebar.css';
 
@@ -39,16 +40,20 @@ const Sidebar = () => {
           <li><img src={home_icon}/><Link to={`/dashboard`}>Dashboard</Link></li>
           <li><img src={box_icon}/><Link to={`/dashboard/products/${userId}`}>Productos</Link></li>
           <li><img src={paidbill_icon}/><Link to={`/dashboard/reports/${userId}`}>Cotizaciones</Link></li>
-          <li><img src={moneytransfer_icon}/><Link to={`/dashboard/transactions`}>Transacciones</Link></li>
-          <li><img src={truck_icon}/>Envíos<br/>(Proximamente)</li>
-          <li><img src={calendar_icon}/>Calendario<br/>(Proximamente)</li>
+          {/*<li><img src={moneytransfer_icon}/><Link to={`/dashboard/transactions`}>Transacciones</Link></li>*/}
+          <li><img src={truck_icon}/><Link to={`/dashboard/shipments`}>Envíos</Link></li>
+          {/*<li><img src={calendar_icon}/>Calendario<br/>(Proximamente)</li>*/}
         </ul>
       </nav>
       <div className="buttonContainer">
         <Link to={`/dashboard/quotation/${userId}`}><button className="newQuotationButton">Nueva Cotización</button></Link>
       </div>
-      <div className="logoutContainer">
-        <a href="#" onClick={handleLogout}><i><u>Cerrar Sesión</u></i></a>
+      <div onClick={handleLogout} className="logoutContainer">
+        <Link>
+        <ul>
+        <li><img src={logout}/>Cerrar Sesión</li>
+        </ul>
+        </Link>
       </div>
     </div>
   );

@@ -5,4 +5,26 @@
 .percentage {
     text-align: center;
 }
+
+.acceptButton {
+    background-color: #005691;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    max-width: 25vw;
+    margin-top: auto;
+  }
+  
+  .disabledButton {
+    background-color: #adadad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    max-width: 25vw;
+    margin-top: auto;
+  }
   

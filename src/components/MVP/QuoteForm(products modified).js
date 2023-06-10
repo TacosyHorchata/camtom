@@ -11,7 +11,6 @@ const serverURL = process.env.REACT_APP_serverURL;
 function QuoteForm() {
   const [type, setType] = useState('Exportación');
   const [product, setProduct] = useState("");
-  const [tariff, setTariff] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [exchangeRate, setExchangeRate] = useState("");
@@ -21,6 +20,7 @@ function QuoteForm() {
   const [otherOrigin, setOtherOrigin] = useState("");
   const [otherDestination, setOtherDestination] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [products, setProducts] = useState([""]);
 
   const navigate = useNavigate();
 
@@ -89,9 +89,14 @@ function QuoteForm() {
       setErrorMessage('Por favor, rellena todos los campos.');
       return;
     };
-
+    // Verifica si se aceptaron los terminos y condiciones
     if (!acceptedTerms) {
       setErrorMessage('Debes aceptar los términos y condiciones.');
+      return;
+    };
+  // Verifica qyue todos los productos esten completados
+    if (products.some(product => product === "")) {
+      setErrorMessage('Por favor, rellena todos los productos.');
       return;
     };
 
@@ -99,7 +104,6 @@ function QuoteForm() {
       userId: userId, 
       importacionExportacion: type,
       nombreProducto: product,
-      fraccionArancelaria: tariff,
       origen: origin === "Otro" ? otherOrigin : origin,
       destino: destination === "Otro" ? otherDestination : destination,
       cambioDolar: exchangeRate,
@@ -114,8 +118,9 @@ function QuoteForm() {
       const quoteId = quoteRes.data._id;
       await axios.put(`${serverURL}/api/quote/${userId}`, {quoteId: quoteId});
 
-      // Navega success después de un envío exitoso
-      navigate('/dashboard/success-quote');
+      // Navega a la página principal después de un envío exitoso
+      alert("Cotización creada con éxito")
+      navigate('/dashboard');
     } catch (error) {
       console.error(error);
       setErrorMessage('Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.');
@@ -125,6 +130,18 @@ function QuoteForm() {
   const toggleButton = () => {
     setIsOn(!isOn);
     setType(isOn ? 'Exportación' : 'Importación');
+  };
+
+   // Función para manejar el cambio en el nombre o la tarifa de un producto
+   const handleProductChange = (index, value) => {
+    const newProducts = [...products];
+    newProducts[index] = value;
+    setProducts(newProducts);
+  };
+
+  // Función para agregar un nuevo producto al array de productos
+  const addProduct = () => {
+    setProducts([...products, ""]);
   };
 
   return (
@@ -197,10 +214,23 @@ function QuoteForm() {
         </div>
 
         <div className={` input-block `}>
-          <label className="form-label">
-            Producto
-            <input className="form-input" type="text" onChange={e => setProduct(e.target.value)} />
-          </label>
+          {products.map((product, index) => (
+            <div key={index}>
+              <label className="form-label">
+                Producto {index + 1}
+                <input
+                  className="form-input"
+                  type="text"
+                  value={product}
+                  onChange={(e) => handleProductChange(index, e.target.value)}
+                />
+              </label>
+            </div>
+          ))}
+
+          <button type="button" onClick={addProduct}>
+            Agregar producto
+          </button>
         </div>
 
         <div className={`input-block`}>
@@ -212,7 +242,7 @@ function QuoteForm() {
               onChange={e => setAcceptedTerms(e.target.checked)}
               style={{ marginRight: '10px' }}  // Espacio entre el checkbox y el texto
             />
-            <p style={{margin:0}}>He leído y acepto <a href="/dashboard/terms-conditions">los términos y condiciones</a></p>
+            <p style={{margin:0}}>He leído y acepto <a href="/terms-conditions">los términos y condiciones</a></p>
           </label>
         </div>
 

@@ -14,11 +14,18 @@ import ListReports from './ListReports';
 import ListProducts from './ListProducts';
 import Report from './Report'
 import Transactions from './Transactions';
+import Shipments from './Shipments';
+import TermsConditions from './TermsConditions';
+import SuccessQuote from './SucessQuote';
+
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 
 import "./DashboardMVP.css"
+
+
+
 
 const serverURL = process.env.REACT_APP_serverURL;
 
@@ -27,17 +34,70 @@ function Dashboard() {
     <div className="dashboard">
       <Sidebar />
       <Routes>
-        <Route path="/" element={<DashboardHome />} />
+        <Route path="/" element={<DashboardPrev/>} />
         <Route path="/quotation/:userId" element={<QuoteForm />} />
         <Route path="/products/:userId" element={<ListProducts/>} />
         <Route path="/reports/:userId" element={<ListReports/>} />
         <Route path="/report/:reportId/:userId" element={<Report/>} />
-        <Route path="/transactions" element={<Transactions/>} />
+        <Route path="/shipments" element={<Shipments/>} />
+        <Route path="/terms-conditions" element={<TermsConditions/>} />
+        <Route path="/success-quote" element={<SuccessQuote/>} />
 
       </Routes>
     </div> 
   );
 }
+
+function DashboardPrev() {
+  const userId = useSelector(state => state.user.user.userId);
+  const userEmail = useSelector(state => state.user.user.email);
+  const [reports, setReports] = useState([]);
+  const [errors, setErrors] = useState({});
+
+  const getReportFolios = async () => {
+
+    try {
+      // Obtiene los folios de los reportes del usuario
+      const responseFolios = await axios.get(`${serverURL}/api/reportfolios/${userId}`);
+      const arrayfolios = responseFolios.data;
+
+      // Para cada folio, obtener el reporte completo
+      const responseReports = await axios.post(`${serverURL}/api/reportfolios/`, {arrayfolios:arrayfolios});
+
+      // Guardar los reportes en el estado del componente
+      setReports(responseReports.data);
+      setErrors({...errors, loading:null})
+      
+    } catch (error) {
+      console.error("Error obteniendo los datos:", error);
+      setErrors({...errors, loading: "Error obteniendo los datos, intente más tarde"});
+    }
+  };
+
+useEffect(() => {
+    getReportFolios();
+  }, []);
+
+  const acceptedReports = reports.filter(report => report.accepted === true).length;
+  const pendingReports = reports.filter(report => report.accepted === false).length;
+
+
+  return (
+    <div className="main" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh'}}>
+      <div id="welcome"><h1>¡Hola, {userEmail}!</h1></div>
+      <div id="notifications">Tienes 0 mensajes y 0 notificaciones</div>
+      <div className='text-center' 
+        style={{ 
+                marginTop: 'auto', 
+                marginBottom:'50vh'}}>Realiza tu primera operación para ver información estadística.<br/><br/>Tienes {acceptedReports} cotizaciónes confirmadas y {pendingReports} <a href={`/dashboard/reports/${userId}`}>cotizaciones</a> pendientes</div>
+    </div>
+  );
+
+}
+
+
+
+
 
 function DashboardHome() {
   const userId = useSelector(state => state.user.user.userId);
@@ -67,8 +127,8 @@ function DashboardHome() {
           setErrors({...errors, loading:null})
           
         } catch (error) {
-          console.error("Error obteniendo los reportes:", error);
-          setErrors({...errors, loading: "Error obteniendo los reportes, intente más tarde"});
+          console.error("Error obteniendo los datos:", error);
+          setErrors({...errors, loading: "Error obteniendo los datos, intente más tarde"});
         }
       };
 
@@ -76,6 +136,7 @@ function DashboardHome() {
         getReportFolios();
       }, []);
 
+    
     return (
       <div className="main">
             <div id="welcome"><h1>¡Hola, {userEmail}!</h1></div>
