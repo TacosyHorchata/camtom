@@ -17,6 +17,7 @@ import Transactions from './Transactions';
 import Shipments from './Shipments';
 import TermsConditions from './TermsConditions';
 import SuccessQuote from './SucessQuote';
+import Help from './Help';
 
 import { useSelector } from 'react-redux';
 
@@ -41,6 +42,7 @@ function Dashboard() {
         <Route path="/reports/:userId" element={<ListReports/>} />
         <Route path="/report/:reportId/:userId" element={<Report/>} />
         <Route path="/shipments" element={<Shipments/>} />
+        <Route path="/help" element={<Help/>} />
         <Route path="/terms-conditions" element={<TermsConditions/>} />
         <Route path="/success-quote" element={<SuccessQuote/>} />
         <Route path="/editquote/:reportId" element={<EditQuote/>} />
@@ -80,8 +82,15 @@ useEffect(() => {
     getReportFolios();
   }, []);
 
-  const acceptedReports = reports.filter(report => report.accepted === true).length;
-  const pendingReports = reports.filter(report => report.accepted === false).length;
+  let acceptedReports, pendingReports;
+
+  if(reports.length>=1){
+    acceptedReports = reports.filter(report => report.accepted === true).length;
+    pendingReports = reports.filter(report => report.accepted === false).length;
+  }else {
+    acceptedReports = 0;
+    pendingReports = 0;
+  }
 
 
   return (

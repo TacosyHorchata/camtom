@@ -38,8 +38,7 @@
     font-weight: bold;
   }
   
-  input[type="text"],
-  input[type="number"],
+ 
   button {
     padding: 5px;
     border-radius: 5px;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './EditQuote.css'
 
@@ -11,6 +12,7 @@ const EditQuote = () => {
   const params = useParams();
   const serverURL = process.env.REACT_APP_serverURL;
   const reportId = params.reportId;
+  const userId = useSelector(state => state.user.user.userId);
 
   const getReport = async () => {
 
@@ -107,6 +109,7 @@ const EditQuote = () => {
         setErrors({...errors, loading: "Error actualizando el reporte, intente más tarde"});
     }
 };
+  if(userId != "648628a15d1cc0cdd9b696ea") return <div>Error</div>;
 
   if (!cotizacion) return <div>Loading...</div>;
 

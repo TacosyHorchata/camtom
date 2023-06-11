@@ -8,7 +8,7 @@ import './ListReports.css'
 const serverURL = process.env.REACT_APP_serverURL;
 
 
-function ReportList({ auth }) {
+function ReportList() {
     const [reports, setReports] = useState(null);
     const [errors, setErrors] = useState({});
 
@@ -31,7 +31,11 @@ function ReportList({ auth }) {
           const responseReports = await axios.post(`${serverURL}/api/reportfolios/`, {arrayfolios:arrayfolios});
           console.log(responseReports);
           // Guardar los reportes en el estado del componente
-          setReports(responseReports.data);
+          if(responseReports.data.message === 'No existen cotizaciones previas'){
+            setReports([]);
+          }else{
+            setReports(responseReports.data);
+          }
           setErrors({...errors, loading:null})
           
         } catch (error) {
@@ -71,18 +75,21 @@ function ReportList({ auth }) {
     <div className='main'>
       <h1>Cotizaciones</h1>
       {errors.loading ? <p style={{color:'red', margin:'2vh'}}>{errors.loading}</p> : null}
-      {reports.map((report, i) => (
-        <div key={i} className='reportCard'>
-          <h4>Reporte de cotizacion {report.folio}</h4>
-          <br/>
-          <p>{report.fecha}</p>
-          <p>Exportacion de {report.producto} - {report.fraccionArancelaria}</p>
-          <p>{report.origenPrimario} a {report.destinoPrimario}</p>
-          <p>{report.Incoterm}</p>
-          <a href={`/dashboard/report/${report._id}/${userId}`}>Ver reporte completo</a>
-  
-        </div>
-      ))}
+      {reports.length === 0 ? (
+          <div>No hay cotizaciones disponibles</div> // display this when there are no reports
+        ) : (
+          reports.map((report, i) => (
+            <div key={i} className='reportCard'>
+              <h4>Reporte de cotizacion {report?.folio}</h4>
+              <br/>
+              <p>{report?.fecha}</p>
+              <p>Exportacion de {report?.producto} - {report?.fraccionArancelaria}</p>
+              <p>{report?.origenPrimario} a {report?.destinoPrimario}</p>
+              <p>{report?.Incoterm}</p>
+              <a href={`/dashboard/report/${report?._id}/${userId}`}>Ver reporte completo</a>
+            </div>
+          ))
+        )}
     </div>
   );
 }

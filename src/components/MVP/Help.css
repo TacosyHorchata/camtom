@@ -1,0 +1,40 @@
+.containerHelp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+.containerHelp a {
+    text-decoration: none;
+}
+
+.containerHelp a:hover {
+    color: #004A7C;
+}
+  
+  .button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    margin: 10px;
+    height: 100px;
+    padding: 0 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: none;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  
+  .button img {
+    width: 30px;
+    margin-right: 15px;
+  }
+  

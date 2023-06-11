@@ -2,6 +2,10 @@
     display: flex;
     background-color: white;
   }
+
+  h1 {
+    color: #004A7C;
+  }
   
   .dashboard > * {
     flex-grow: 1;

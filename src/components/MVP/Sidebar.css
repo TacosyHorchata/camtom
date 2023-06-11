@@ -59,12 +59,15 @@
 
 .sidebar img {
   margin-right: 10px;
-  height: auto;
-  width: auto; 
 }
 
 .logoutContainer {
   margin: 1vw; 
+}
+
+.help-icon{
+  height: 25px;
+  width: 25px;
 }
 
 

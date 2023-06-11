@@ -11,6 +11,7 @@ import moneytransfer_icon from '../images/icons-mvp/moneytransfer.svg';
 import paidbill_icon from '../images/icons-mvp/paidbill.svg';
 import truck_icon from '../images/icons-mvp/truck.svg';
 import logout from '../images/icons-mvp/logout.svg';
+import help_icon from '../images/icons-mvp/help.png';
 
 import './Sidebar.css';
 
@@ -42,6 +43,7 @@ const Sidebar = () => {
           <li><img src={paidbill_icon}/><Link to={`/dashboard/reports/${userId}`}>Cotizaciones</Link></li>
           {/*<li><img src={moneytransfer_icon}/><Link to={`/dashboard/transactions`}>Transacciones</Link></li>*/}
           <li><img src={truck_icon}/><Link to={`/dashboard/shipments`}>Envíos</Link></li>
+          <li><img src={help_icon} className='help-icon'/><Link to={`/dashboard/help`}>Ayuda</Link></li>
           {/*<li><img src={calendar_icon}/>Calendario<br/>(Proximamente)</li>*/}
         </ul>
       </nav>
