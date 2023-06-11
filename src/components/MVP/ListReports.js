@@ -9,7 +9,7 @@ const serverURL = process.env.REACT_APP_serverURL;
 
 
 function ReportList({ auth }) {
-    const [reports, setReports] = useState([]);
+    const [reports, setReports] = useState(null);
     const [errors, setErrors] = useState({});
 
     const params = useParams();
@@ -63,8 +63,11 @@ function ReportList({ auth }) {
         getReportFolios();
       },[]);
     
+  if (!reports) return <div>Cargando...</div>;
 
   return (
+    
+
     <div className='main'>
       <h1>Cotizaciones</h1>
       {errors.loading ? <p style={{color:'red', margin:'2vh'}}>{errors.loading}</p> : null}

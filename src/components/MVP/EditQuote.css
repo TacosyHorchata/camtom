@@ -1,0 +1,58 @@
+.form-section {
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .form-row label {
+    flex: 0 0 150px;
+    margin-right: 10px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .form-subsection {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .form-subtitle {
+    margin-bottom: 10px;
+  }
+  
+  .form-concept {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos adicionales para mejorar la apariencia */
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+  }
+  

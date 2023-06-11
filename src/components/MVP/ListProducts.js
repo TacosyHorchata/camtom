@@ -8,7 +8,7 @@ import './ListProducts.css'
 const serverURL = process.env.REACT_APP_serverURL;
 
 function ListProducts({ auth }) {
-    const [reports, setReports] = useState([]);
+    const [reports, setReports] = useState(null);
     const [errors, setErrors] = useState({});
 
     const params = useParams();
@@ -44,7 +44,8 @@ function ListProducts({ auth }) {
         getReportFolios();
       }, []);
     
-
+    if (!reports) return <div>Cargando...</div>;
+    
   return (
     <div className='main'>
     <h1>Productos</h1>

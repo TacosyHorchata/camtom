@@ -212,7 +212,7 @@ function QuoteForm() {
               onChange={e => setAcceptedTerms(e.target.checked)}
               style={{ marginRight: '10px' }}  // Espacio entre el checkbox y el texto
             />
-            <p style={{margin:0}}>He leído y acepto <a href="/dashboard/terms-conditions">los términos y condiciones</a></p>
+            <p style={{margin:0}}>He leído y acepto <a href="/dashboard/terms-conditions" target="_blank">los términos y condiciones</a></p>
           </label>
         </div>
 

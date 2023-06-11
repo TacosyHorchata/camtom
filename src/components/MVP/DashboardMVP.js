@@ -12,7 +12,7 @@ import Sidebar from './Sidebar';
 import QuoteForm from './QuoteForm';
 import ListReports from './ListReports';
 import ListProducts from './ListProducts';
-import Report from './Report'
+import Report from './ReportPrueba'
 import Transactions from './Transactions';
 import Shipments from './Shipments';
 import TermsConditions from './TermsConditions';
@@ -23,6 +23,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import "./DashboardMVP.css"
+import EditQuote from './EditQuote';
 
 
 
@@ -42,6 +43,7 @@ function Dashboard() {
         <Route path="/shipments" element={<Shipments/>} />
         <Route path="/terms-conditions" element={<TermsConditions/>} />
         <Route path="/success-quote" element={<SuccessQuote/>} />
+        <Route path="/editquote/:reportId" element={<EditQuote/>} />
 
       </Routes>
     </div> 
