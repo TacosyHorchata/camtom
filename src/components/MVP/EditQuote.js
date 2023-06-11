@@ -84,7 +84,7 @@ const EditQuote = () => {
 
   const handleAddConcepto = (index, subIndex) => {
     const newSecciones = [...cotizacion.secciones];
-    newSecciones[index].subtitulos[subIndex].conceptos.push({ concepto: '', porcentaje: '', valor: 0 });
+    newSecciones[index].subtitulos[subIndex].conceptos.push({ concepto: '', valor: '0' });
     setCotizacion({ ...cotizacion, secciones: newSecciones });
   };
 
@@ -339,16 +339,16 @@ const EditQuote = () => {
             />
             </div>
 
-            <div className="form-row">
-            <label htmlFor="accepted">Accepted:</label>
-            <input
-                type="checkbox"
-                id="accepted"
-                name="accepted"
-                checked={cotizacion.accepted}
-                onChange={(e) => handleInputChange(e, 'accepted')}
-            />
-            </div>
+            {/*<div className="form-row">
+                <label htmlFor="accepted">Accepted:</label>
+                <input
+                    type="checkbox"
+                    id="accepted"
+                    name="accepted"
+                    checked={cotizacion.accepted}
+                    onChange={(e) => handleInputChange(e, 'accepted')}
+                />
+                </div>*/}
         </div>
 
         <div className="form-actions">
